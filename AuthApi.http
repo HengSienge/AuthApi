@@ -1,0 +1,26 @@
+@AuthApi_HostAddress = http://localhost:5011
+
+GET {{AuthApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{AuthApi_HostAddress}}/api/account/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "TestPassword123!"
+}
+
+###
+
+POST {{AuthApi_HostAddress}}/api/account/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "TestPassword123!"
+}
+
+###
