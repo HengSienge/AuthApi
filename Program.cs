@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 [assembly: InternalsVisibleTo("AuthApi.Tests")]
 
@@ -38,10 +39,10 @@ public partial class Program
         });
 
         builder.Services.AddControllers();
-        builder.Services.AddTransient<IEmailSender<IdentityUser>, IdentityNoOpEmailSender>();
+        builder.Services.AddTransient<IEmailSender, NoOpEmailSender>();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddSingleton<IEmailSender<IdentityUser>, IdentityNoOpEmailSender>();
+        // builder.Services.AddSingleton<IEmailSender<IdentityUser>, IdentityNoOpEmailSender>();
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment()) {
@@ -58,17 +59,11 @@ public partial class Program
     }
 }
 
-public class IdentityNoOpEmailSender : IEmailSender<IdentityUser>
+public class NoOpEmailSender : IEmailSender
 {
-    public Task SendConfirmationLinkAsync(IdentityUser user, string email, string confirmationLink) => Task.CompletedTask;
-    public Task SendPasswordResetLinkAsync(IdentityUser user, string email, string resetLink) => Task.CompletedTask;
-    public Task SendPasswordResetCodeAsync(IdentityUser user, string email, string resetCode) => Task.CompletedTask;
-}
-
-public class NoopEmailSender : IEmailSender<IdentityUser>
-{
-    public Task SendEmailAsync(IdentityUser user, string email, string confirmationLink) => Task.CompletedTask;
-    public Task SendConfirmationLinkAsync(IdentityUser user, string email, string confirmationLink) => Task.CompletedTask;
-    public Task SendPasswordResetLinkAsync(IdentityUser user, string email, string resetLink) => Task.CompletedTask;
-    public Task SendPasswordResetCodeAsync(IdentityUser user, string email, string resetCode) => Task.CompletedTask;
+    public Task SendEmailAsync(string email, string subject, string htmlMessage)
+    {
+        // No-op implementation for testing
+        return Task.CompletedTask;
+    }
 }

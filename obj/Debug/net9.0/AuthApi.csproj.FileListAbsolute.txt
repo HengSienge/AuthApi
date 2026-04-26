@@ -131,3 +131,4 @@ C:\Users\hengs\AuthApi\AuthApi\obj\Debug\net9.0\AuthApi.pdb
 C:\Users\hengs\AuthApi\AuthApi\obj\Debug\net9.0\AuthApi.genruntimeconfig.cache
 C:\Users\hengs\AuthApi\AuthApi\obj\Debug\net9.0\ref\AuthApi.dll
 C:\Users\hengs\AuthApi\AuthApi\bin\Debug\net9.0\AuthApi.postman_collection.json
+C:\Users\hengs\AuthApi\AuthApi\obj\Debug\net9.0\AuthApi.sourcelink.json

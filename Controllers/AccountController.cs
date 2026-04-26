@@ -113,7 +113,7 @@ namespace AuthApi.Controllers
         }
 
         [HttpPost("reset-password")]
-        public async Task<IActionResult> ResetPassword([FromBody] resetPasswordModel model)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
         {
             _logger.LogInformation("Attempting password reset for email: {Email}", model.Email);
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -194,7 +194,7 @@ namespace AuthApi.Controllers
         public required string Password { get; set; }
     }
 
-    public class resetPasswordModel
+    public class ResetPasswordModel
     {
         public required string Email { get; set; }
         public required string Token { get; set; }
